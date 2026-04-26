@@ -370,8 +370,8 @@ export default async function Home({
       </aside>
       <main className="min-h-screen bg-background md:pl-16 md:pr-16 lg:pl-20 lg:pr-20">
         <div className="px-6 sm:px-10 lg:px-14 py-10 sm:py-14">
-          <h1 className="text-accent font-black tracking-tighter leading-[0.9] text-[clamp(4rem,16vw,12rem)] mb-4 sm:mb-6 text-center overflow-hidden">
-            <span className="inline-block origin-center scale-x-[1.65]">
+          <h1 className="text-black font-black tracking-tighter leading-[0.9] text-[clamp(4rem,16vw,12rem)] mb-4 sm:mb-6 text-center overflow-hidden">
+              <span className="inline-block origin-center scale-x-[1.65]">
               AKTIVITY
             </span>
           </h1>
