@@ -124,13 +124,15 @@ function buildStatRows(
 
 function StatRow({ row }: { row: StatRowConfig }) {
   return (
-    <div className="flex items-center gap-3 sm:gap-4">
-      <div className="text-foreground shrink-0">{row.icon}</div>
-      <div className="flex items-baseline gap-1.5">
-        <span className="text-5xl sm:text-6xl font-medium tracking-tight leading-none tabular-nums">
+    <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
+      <div className="text-foreground shrink-0 [&>svg]:w-10 [&>svg]:h-10 sm:[&>svg]:w-12 sm:[&>svg]:h-12">
+        {row.icon}
+      </div>
+      <div className="flex items-baseline gap-1 sm:gap-1.5 whitespace-nowrap">
+        <span className="text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-none tabular-nums">
           {row.value}
         </span>
-        <span className="text-base sm:text-lg text-foreground/60">
+        <span className="text-sm sm:text-base lg:text-lg text-foreground/60">
           {row.unit}
         </span>
       </div>
@@ -369,9 +371,9 @@ export default async function Home({
         </div>
       </aside>
       <main className="min-h-screen bg-background md:pl-16 md:pr-16 lg:pl-20 lg:pr-20">
-        <div className="px-6 sm:px-10 lg:px-14 py-10 sm:py-14">
-          <h1 className="text-black font-black tracking-tighter leading-[0.9] text-[clamp(3rem,10vw,8rem)] mb-4 sm:mb-6 text-center overflow-hidden">
-              <span className="inline-block origin-center scale-x-[1.65]">
+        <div className="px-4 sm:px-8 lg:px-14 py-6 sm:py-10 lg:py-14">
+          <h1 className="text-black font-black tracking-tighter leading-[0.9] text-[clamp(2.5rem,10vw,8rem)] mb-4 sm:mb-6 text-center overflow-hidden">
+            <span className="inline-block origin-center scale-x-[1.2] sm:scale-x-[1.4] lg:scale-x-[1.55] xl:scale-x-[1.65]">
               AKTIVITY
             </span>
           </h1>
@@ -394,12 +396,12 @@ export default async function Home({
           {!error && (
             <section className="mb-16 sm:mb-20">
               <h2
-                className="font-black tracking-tight leading-none text-[clamp(2.5rem,9vw,7rem)] mb-8 text-center"
+                className="font-black tracking-tight leading-none text-[clamp(2rem,8vw,6rem)] mb-6 sm:mb-8 text-center"
                 style={{ color: monthLabelColor }}
               >
                 {currentMonthLabel()}
               </h2>
-              <div className="flex justify-center gap-8 sm:gap-12 w-full">
+              <div className="grid grid-cols-2 sm:flex sm:justify-center gap-6 sm:gap-8 lg:gap-12 w-full">
                 {statRows.map((row) => (
                   <StatRow key={row.label} row={row} />
                 ))}

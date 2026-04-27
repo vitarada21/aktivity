@@ -25,10 +25,9 @@ export function WavesIcon({ className, size = 48 }: IconProps) {
 export function ShoeIcon({ className, size = 48 }: IconProps) {
   return (
     <svg {...baseProps(size, className)}>
-      <path d="M19 20H5c-1.1 0-2-.9-2-2v-3c0-.6.4-1 1-1h2l1.5-3h3l1 2h3l4-2 4 2v5c0 1.1-.9 2-2 2z" />
-      <path d="M7 14v6" />
-      <path d="M11 14l1 6" />
-      <path d="M15 14l1 6" />
+      <path d="m15 10.42 4.8-5.07" />
+      <path d="M19 18h3" />
+      <path d="M9.5 22 21.414 9.415A2 2 0 0 0 21.2 6.4l-5.61-4.208A1 1 0 0 0 14 3v2a2 2 0 0 1-1.394 1.906L8.677 8.053A1 1 0 0 0 8 9c-.155 6.393-2.082 9-4 9a2 2 0 0 0 0 4h14" />
     </svg>
   );
 }
