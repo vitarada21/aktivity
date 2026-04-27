@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Aktivity",
+  title: "Víťovy aktivity",
   description: "Moje aktivity ze Stravy",
 };
 

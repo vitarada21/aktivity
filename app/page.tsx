@@ -124,20 +124,28 @@ function buildStatRows(
 
 function StatRow({ row }: { row: StatRowConfig }) {
   return (
-    <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
-      <div className="text-foreground shrink-0 [&>svg]:w-10 [&>svg]:h-10 sm:[&>svg]:w-12 sm:[&>svg]:h-12">
+    <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 lg:gap-4">
+      <div className="text-foreground shrink-0 [&>svg]:w-9 [&>svg]:h-9 sm:[&>svg]:w-10 sm:[&>svg]:h-10 lg:[&>svg]:w-12 lg:[&>svg]:h-12">
         {row.icon}
       </div>
       <div className="flex items-baseline gap-1 sm:gap-1.5 whitespace-nowrap">
-        <span className="text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-none tabular-nums">
+        <span className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight leading-none tabular-nums">
           {row.value}
         </span>
-        <span className="text-sm sm:text-base lg:text-lg text-foreground/60">
+        <span className="text-xs sm:text-sm lg:text-base xl:text-lg text-foreground/60">
           {row.unit}
         </span>
       </div>
     </div>
   );
+}
+
+function formatTotalMovingTime(activities: StravaActivity[]): string {
+  const totalSeconds = activities.reduce((acc, a) => acc + a.moving_time, 0);
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  if (h === 0) return `${m} min`;
+  return `${h} h ${m} min`;
 }
 
 function currentMonthLabel(): string {
@@ -172,7 +180,7 @@ function FilterBar({ active }: { active: SportCategory | "all" }) {
   ];
 
   return (
-    <div className="flex flex-wrap gap-2 mb-8">
+    <div className="flex flex-wrap justify-center gap-2 mb-8">
       {items.map((item) => {
         const isActive = item.key === active;
         const href = item.key === "all" ? "/" : `/?filter=${item.key}`;
@@ -372,6 +380,9 @@ export default async function Home({
       </aside>
       <main className="min-h-screen bg-background md:pl-16 md:pr-16 lg:pl-20 lg:pr-20">
         <div className="px-4 sm:px-8 lg:px-14 py-6 sm:py-10 lg:py-14">
+          <div className="text-center text-2xl sm:text-3xl uppercase tracking-[0.3em] font-medium text-foreground/60 mb-2 sm:mb-3">
+            Vít Rada
+          </div>
           <h1 className="text-black font-black tracking-tighter leading-[0.9] text-[clamp(2.5rem,10vw,8rem)] mb-4 sm:mb-6 text-center overflow-hidden">
             <span className="inline-block origin-center scale-x-[1.2] sm:scale-x-[1.4] lg:scale-x-[1.55] xl:scale-x-[1.65]">
               AKTIVITY
@@ -401,10 +412,18 @@ export default async function Home({
               >
                 {currentMonthLabel()}
               </h2>
-              <div className="grid grid-cols-2 sm:flex sm:justify-center gap-6 sm:gap-8 lg:gap-12 w-full">
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center gap-x-4 gap-y-6 sm:gap-x-6 lg:gap-x-10 xl:gap-x-12 w-full">
                 {statRows.map((row) => (
                   <StatRow key={row.label} row={row} />
                 ))}
+              </div>
+              <div className="mt-8 sm:mt-10 text-center">
+                <div className="text-xs sm:text-sm uppercase tracking-[0.25em] font-medium text-foreground/60 mb-2">
+                  Moving time
+                </div>
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight tabular-nums">
+                  {formatTotalMovingTime(monthActivities)}
+                </div>
               </div>
             </section>
           )}
