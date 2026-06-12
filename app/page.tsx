@@ -13,6 +13,7 @@ import {
 import { YearProgress } from "@/components/YearProgress";
 import { RouteOutline } from "@/components/RouteOutline";
 import { ShareModal } from "@/components/ShareModal";
+import { TopNavigation } from "@/components/TopNavigation";
 import { getGradientColorAt, getYearProgress } from "@/lib/year-progress";
 
 type SportCategory = "run" | "ride" | "swim" | "weights";
@@ -380,6 +381,7 @@ export default async function Home({
       </aside>
       <main className="min-h-screen bg-background md:pl-16 md:pr-16 lg:pl-20 lg:pr-20">
         <div className="px-4 sm:px-8 lg:px-14 py-6 sm:py-10 lg:py-14">
+          <TopNavigation />
           <div className="text-center text-2xl sm:text-3xl uppercase tracking-[0.3em] font-medium text-foreground/60 mb-2 sm:mb-3">
             Vít Rada
           </div>
